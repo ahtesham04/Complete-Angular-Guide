@@ -1,0 +1,26 @@
+<form [formGroup]="userInfo">
+  Fullname: <input type="text" formControlName="fullname" />
+  <div formArrayName="skills">
+    Skills :
+    <ng-container *ngFor="let item of skillsControlls; let i = index">
+      <div class="form-group">
+        <input type="text" [formControlName]="i" />
+      </div>
+    </ng-container>
+    <button type="button" (click)="addSkills()">Add skill</button>
+  </div>
+
+  <div formArrayName="experience">
+    <div *ngFor="let exp of expControls; let i = index" [formGroupName]="i">
+      <label>Experience {{ i + 1 }}</label>
+      <input type="text" placeholder="company name" formControlName="company" />
+      <input
+        type="number"
+        placeholder="no of experience"
+        formControlName="totalexp"
+      />
+      <button (click)="deleteExp(i)">Delete</button>
+    </div>
+  </div>
+  <button type="button" (click)="addExperience()">Add Experice</button>
+</form>
